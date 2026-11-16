@@ -22,7 +22,6 @@ st.markdown("""
         background-color: #0E1621;
         color: #E2E8F0;
     }
-    
     /* Styling Header Utama */
     h1 {
         font-size: 2.5rem !important;
@@ -112,6 +111,7 @@ filtered_df = df_main[
 # HEADER UTAMA
 # ==========================================
 st.title("🚲 Bike Sharing Analytics Dashboard")
+st.write(f"Total baris data: {len(df_main)}")
 st.markdown("<p style='font-size: 1.15rem; color: #94A3B8; margin-top: -10px;'>Monitoring & Analisis Komprehensif Pola Penyewaan Sepeda (2011–2012)</p>", unsafe_allow_html=True)
 st.markdown("---")
 
