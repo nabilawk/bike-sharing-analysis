@@ -1,6 +1,8 @@
+from matplotlib.path import Path
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import streamlit as st
 
 # Konfigurasi Halaman Streamlit
 st.set_page_config(
@@ -62,13 +64,17 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Load Dataset dengan Caching
+# Menentukan direktori utama tempat file dashboard.py berada
+BASE_DIR = Path(__file__).resolve().parent
+
+# Load Dataset dengan Caching dan Pathlib yang benar
 @st.cache_data
 def load_data():
-    df = pd.read_csv('main_data.csv')
-    df['dteday'] = pd.to_datetime(df['dteday'])
-    df['year_label'] = df['yr'].map({0: 2011, 1: 2012})
-    return df
+    # Mengarahkan langsung ke main_data.csv di dalam folder yang sama (dashboard/)
+    data = pd.read_csv(BASE_DIR / "main_data.csv")
+    data['dteday'] = pd.to_datetime(data['dteday'])
+    data['year_label'] = data['yr'].map({0: 2011, 1: 2012})
+    return data
 
 df_main = load_data()
 
